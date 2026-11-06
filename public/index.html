@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday, Diana! 🎸</title>
+<meta name="description" content="A gospel-rock birthday concert for Diana Acker, the best mama in the whole wide world.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎸</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="s-idle">
+<canvas id="fx"></canvas>
+
+<div id="sky"><div id="sun"><span>☺</span></div><div id="beams"></div></div>
+<div id="flash"></div>
+
+<!-- Section props -->
+<div id="radio" class="prop">📻 <b>94.7</b><small>JB &amp; SANDY IN THE MORNIN'</small></div>
+<div id="horns" class="prop">🤘⚡🤘</div>
+<div id="trees" class="prop">
+  <div class="tree"><i></i><i></i><i></i></div>
+  <div class="tree t2"><i></i><i></i><i></i></div>
+  <div class="tree t3"><i></i><i></i><i></i></div>
+  <div class="sign">THE BRAUELS' YARD</div>
+</div>
+<div id="car" class="prop">
+  <svg viewBox="0 0 260 110" width="260" height="110">
+    <path d="M20 70 Q30 35 80 32 L150 30 Q185 32 205 55 L240 60 Q250 64 248 80 L20 82 Z" fill="#d7263d" stroke="#222" stroke-width="4"/>
+    <path d="M85 38 L145 36 Q170 38 186 56 L80 58 Z" fill="#9fd8ff" stroke="#222" stroke-width="3"/>
+    <circle cx="120" cy="47" r="10" fill="#f2c39b"/><path d="M110 42 Q120 30 130 42" fill="#8a5a2b"/>
+    <path d="M114 50 Q120 56 127 50" stroke="#222" stroke-width="2" fill="none"/>
+    <path d="M112 43 l5 2 M128 43 l-5 2" stroke="#222" stroke-width="2"/>
+    <text x="150" y="76" font-family="Impact,sans-serif" font-size="16" fill="#fff">MOM 1</text>
+    <circle cx="65" cy="84" r="17" fill="#222"/><circle cx="65" cy="84" r="7" fill="#bbb"/>
+    <circle cx="205" cy="84" r="17" fill="#222"/><circle cx="205" cy="84" r="7" fill="#bbb"/>
+    <g class="flames"><path d="M18 72 L-30 60 L-10 74 L-40 80 L-8 82 L-28 96 L18 80Z" fill="#ff8c00"/><path d="M18 74 L-12 68 L0 76 L-16 82 L18 79Z" fill="#ffe14d"/></g>
+  </svg>
+  <div class="vroom">VROOOOM!!</div>
+</div>
+
+<!-- Choir -->
+<div id="choir">
+  <div class="cm"><b></b></div><div class="cm"><b></b></div><div class="cm"><b></b></div>
+  <div class="cm"><b></b></div><div class="cm"><b></b></div><div class="cm"><b></b></div>
+</div>
+
+<!-- The star of the show -->
+<div id="stage">
+  <div id="platform"></div>
+  <svg id="singer" viewBox="0 0 300 430" width="300" height="430" aria-label="A cartoon bearded gospel-rock singer">
+    <defs>
+      <pattern id="plaid" width="24" height="24" patternUnits="userSpaceOnUse">
+        <rect width="24" height="24" fill="#a31f24"/>
+        <rect width="24" height="7" y="8" fill="#5e0f12" opacity=".7"/>
+        <rect width="7" height="24" x="8" fill="#5e0f12" opacity=".7"/>
+        <rect width="24" height="1.5" y="11" fill="#f3d36b" opacity=".6"/>
+      </pattern>
+    </defs>
+    <!-- legs -->
+    <g id="legL"><rect x="105" y="300" width="36" height="95" rx="8" fill="#2c4a7a"/><path d="M98 392 h48 v20 h-58 q0-20 10-20z" fill="#4b2e16"/></g>
+    <g id="legR"><rect x="158" y="300" width="36" height="95" rx="8" fill="#2c4a7a"/><path d="M154 392 h48 q12 0 12 20 h-60z" fill="#4b2e16"/></g>
+    <!-- body -->
+    <path d="M85 185 Q150 165 215 185 L228 310 L72 310 Z" fill="url(#plaid)" stroke="#3a0b0d" stroke-width="3"/>
+    <rect x="100" y="295" width="100" height="14" fill="#3b2412"/><rect x="141" y="295" width="18" height="14" fill="#d4af37"/>
+    <!-- left arm (fretting) -->
+    <path d="M90 195 Q55 240 70 270 Q90 255 110 245" fill="url(#plaid)" stroke="#3a0b0d" stroke-width="3"/>
+    <!-- guitar -->
+    <g id="guitar">
+      <rect x="20" y="214" width="120" height="14" rx="3" fill="#6b3f1d" transform="rotate(-28 140 260)"/>
+      <rect x="6" y="196" width="22" height="26" rx="4" fill="#3d2410" transform="rotate(-28 140 260)"/>
+      <ellipse cx="160" cy="262" rx="58" ry="46" fill="#c9822e" stroke="#5a3210" stroke-width="4"/>
+      <ellipse cx="190" cy="285" rx="34" ry="26" fill="#c9822e"/>
+      <circle cx="160" cy="262" r="14" fill="#2a160a"/>
+      <g stroke="#eee" stroke-width="1.2"><line x1="40" y1="196" x2="205" y2="285"/><line x1="40" y1="201" x2="205" y2="290"/></g>
+    </g>
+    <circle cx="74" cy="262" r="14" fill="#f0b98f"/>
+    <!-- strumming arm -->
+    <g id="arm"><path d="M210 195 Q245 230 205 270" fill="none" stroke="#a31f24" stroke-width="30" stroke-linecap="round"/><circle cx="203" cy="272" r="15" fill="#f0b98f"/></g>
+    <!-- head -->
+    <g id="head">
+      <rect x="132" y="150" width="36" height="30" fill="#e8ab80"/>
+      <ellipse cx="150" cy="105" rx="55" ry="62" fill="#f0b98f"/>
+      <ellipse cx="94" cy="110" rx="9" ry="14" fill="#e8ab80"/><ellipse cx="206" cy="110" rx="9" ry="14" fill="#e8ab80"/>
+      <!-- beard -->
+      <path d="M93 105 Q90 175 115 210 Q150 250 185 210 Q210 175 207 105 Q200 140 180 140 Q150 128 120 140 Q100 140 93 105Z" fill="#6d4a2f"/>
+      <path d="M110 190 Q150 238 190 190 Q170 225 150 232 Q130 225 110 190Z" fill="#9b8a7a" opacity=".7"/>
+      <g id="mouthG"><ellipse id="mouth" cx="150" cy="150" rx="16" ry="5" fill="#3a0f0f"/><ellipse id="tongue" cx="150" cy="154" rx="9" ry="3" fill="#d9536f"/></g>
+      <path d="M118 140 Q150 125 182 140 Q165 135 150 141 Q135 135 118 140Z" fill="#5a3b24"/>
+      <!-- nose -->
+      <ellipse cx="150" cy="118" rx="11" ry="9" fill="#e09a6e"/>
+      <!-- eyes -->
+      <g id="eyes"><ellipse cx="128" cy="95" rx="7" ry="8" fill="#fff"/><ellipse cx="172" cy="95" rx="7" ry="8" fill="#fff"/>
+        <circle class="pupil" cx="129" cy="97" r="3.5" fill="#222"/><circle class="pupil" cx="171" cy="97" r="3.5" fill="#222"/></g>
+      <g id="brows"><path d="M115 80 Q128 72 140 80" stroke="#4a2f1b" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M160 80 Q172 72 185 80" stroke="#4a2f1b" stroke-width="6" fill="none" stroke-linecap="round"/></g>
+      <g id="shades"><rect x="112" y="85" width="34" height="20" rx="6" fill="#111"/><rect x="154" y="85" width="34" height="20" rx="6" fill="#111"/><rect x="144" y="90" width="12" height="4" fill="#111"/><rect x="118" y="88" width="10" height="4" fill="#fff" opacity=".6"/><rect x="160" y="88" width="10" height="4" fill="#fff" opacity=".6"/></g>
+      <!-- hat -->
+      <path d="M88 70 Q150 -10 212 70 Q150 52 88 70Z" fill="#2b2b2b"/>
+      <path d="M70 72 Q150 48 230 72 Q150 82 70 72Z" fill="#1c1c1c"/>
+      <rect x="98" y="58" width="104" height="8" fill="#8a1c1c" transform="rotate(0)"/>
+      <g id="sweat"><path d="M205 70 q6 10 0 14 q-6-4 0-14z" fill="#7fd3ff"/><path d="M92 62 q5 8 0 11 q-5-3 0-11z" fill="#7fd3ff"/></g>
+    </g>
+  </svg>
+  <div id="nametag">ZACH-ISH WILLIAMS<small>&amp; the Old Church Kazoo Choir</small></div>
+</div>
+
+<div id="shout"></div>
+<div id="banner"></div>
+
+<!-- Lyrics -->
+<div id="lyrics">
+  <div id="section"></div>
+  <div id="line"></div>
+  <div id="next"></div>
+</div>
+
+<!-- Start screen -->
+<div id="start">
+  <h1>Happy Birthday,<br><span>DIANA ACKER!</span></h1>
+  <p>Tonight only, live from the front porch of glory&hellip;</p>
+  <button id="play">▶ START THE SHOW</button>
+  <p class="tiny">Sound on! 🔊 &nbsp;Bring the family for the "DIANA!" parts.</p>
+</div>
+
+<div id="controls">
+  <button id="pause" title="Pause">⏸</button>
+  <button id="restart" title="Restart">⟲</button>
+</div>
+
+<div id="end">
+  <h2>I love you, Mama. ❤️</h2>
+  <p>Happy birthday from your favorite getaway-car passenger.</p>
+  <button id="again">🔁 Encore!</button>
+</div>
+
+<footer>A loving cartoon parody tribute. Not affiliated with any actual gravelly-voiced gospel rockers.</footer>
+<script src="app.js"></script>
+</body>
+</html>

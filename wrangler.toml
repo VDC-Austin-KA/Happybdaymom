@@ -1,0 +1,6 @@
+name = "momsbday"
+compatibility_date = "2026-11-01"
+routes = [{ pattern = "momsbday.ackerworks.com", custom_domain = true }]
+
+[assets]
+directory = "./public"
