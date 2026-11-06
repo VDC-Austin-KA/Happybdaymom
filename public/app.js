@@ -37,8 +37,10 @@ const SECTIONS = [
 
 /* Family photos per section (public/photos) */
 const PH = n => `photos/p${String(n).padStart(2, "0")}.jpg`;
-const PHOTOS = { intro: [8, 12], verse1: [2, 1, 11, 3], chorus: [4, 14, 9, 7], verse2: [6, 15, 2], chorus2: [13, 11, 7, 3],
-  bridge: [10, 5], build: [12, 8, 14], final: [9, 13, 4, 6, 7, 2], outro: [15, 5, 12, 8] };
+const PHOTOS = { intro: [8, 12, 23], verse1: [2, 1, 18, 11, 3, 16], chorus: [4, 14, 9, 7, 19], verse2: [6, 22, 15, 2, 21],
+  chorus2: [13, 11, 20, 7, 3, 16], bridge: [10, 18, 5, 17], build: [12, 8, 14, 23], final: [24, 9, 13, 4, 6, 19, 7, 21, 20],
+  outro: [15, 23, 5, 12, 8, 21] };
+const NPHOTOS = 24, ZACH = 24; // p24: Mom & Dad with the real Zach Williams
 
 /* ===== Timeline (from the real recording) ===== */
 const lines = [], sections = [], songEnd = TIMING.duration;
@@ -113,6 +115,13 @@ function showPhoto(n) {
   b.onload = () => { b.classList.remove("on"); void b.offsetWidth; b.classList.add("on"); a.classList.remove("on"); };
   b.src = PH(n); phFlip ^= 1;
 }
+function zachReveal() { // the one and only (actual) Zach Williams
+  const d = document.createElement("div"); d.className = "polaroid big fly";
+  d.style.setProperty("--r", "-3deg");
+  d.innerHTML = `<img src="${PH(ZACH)}" alt="Diana and Tom with Zach Williams"><b>⭐ SHE MET THE REAL ONE! ⭐</b>`;
+  document.body.appendChild(d); setTimeout(() => d.remove(), 6300);
+  flash(.8); for (let k = 0; k < 4; k++) setTimeout(() => firework(), k * 200);
+}
 function polaroid(n, side) {
   const d = document.createElement("div"); d.className = "polaroid fly";
   d.style.setProperty("--r", (side ? 8 : -8) + "deg"); d.style[side ? "right" : "left"] = "3vw"; d.style.top = "14vh";
@@ -145,6 +154,11 @@ function onLine(l) {
   if (s.id === "chorus" && l.li === 2) polaroid(13, 1);
   if (s.id === "build" && l.li === 3) polaroid(12, 0); // the best place to be is together
   if (s.id === "outro" && l.li === 4) polaroid(8, 1);
+  if (s.id === "final" && l.li === 0) zachReveal();
+  if (s.id === "verse2" && l.li === 5) polaroid(22, 0); // every song was a sermon
+  if (s.id === "verse1" && l.li === 2) polaroid(18, 1); // crackin' jokes all day
+  if (s.id === "bridge" && l.li === 6) polaroid(17, 0);
+  if (s.id === "chorus2" && l.li === 5) polaroid(23, 1); // heaven smiled
   if (s.id === "verse2" && l.li === 1) { pop("AC/DC!"); flash(.7); }
   if (s.id === "verse2" && l.li === 2) pop("🤘METALLICA🤘");
   if (s.id === "verse1" && l.li === 1) pop("94.7!");
@@ -208,12 +222,12 @@ function frame() {
 function finish() {
   playing = false; $("end").classList.add("show");
   const heart = () => { if (playing) return; emoji(pick(["❤️", "💖", "🎂", "🎉", "🎸"]), 2); confetti(4); drawParts(); requestAnimationFrame(heart); };
-  heart(); showPhoto(12);
+  heart(); showPhoto(ZACH);
 }
 
 (function collage() {
   const c = $("collage"); if (!c) return;
-  for (let i = 1; i <= 15; i++) { const im = new Image(); im.src = PH(i); im.alt = "";
+  for (let i = 1; i <= NPHOTOS; i++) { const im = new Image(); im.src = PH(i); im.alt = "";
     im.style.left = ((i * 37) % 90) - 5 + "vw"; im.style.top = ((i * 53) % 85) - 5 + "vh"; im.style.transform = `rotate(${(i % 5 - 2) * 7}deg)`; c.appendChild(im); }
 })();
 

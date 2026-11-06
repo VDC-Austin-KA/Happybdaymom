@@ -150,3 +150,8 @@ footer{position:fixed;top:8px;left:12px;z-index:15;font-size:10px;color:#fff8;ma
 .notes i{position:absolute;font:normal 28px serif;color:#ffe14d;text-shadow:2px 2px 0 #000;animation:note 1.2s linear infinite}
 .notes i:nth-child(2){animation-delay:-.3s;left:20px}.notes i:nth-child(3){animation-delay:-.6s;left:-20px}.notes i:nth-child(4){animation-delay:-.9s;left:10px}
 @keyframes note{0%{transform:translate(0,0);opacity:0}20%{opacity:1}100%{transform:translate(-60px,-70px) rotate(-30deg);opacity:0}}
+.polaroid.big{left:50%;top:8vh;width:min(70vw,560px);margin-left:calc(min(70vw,560px) / -2);z-index:9;padding-bottom:12px}
+.polaroid.big img{aspect-ratio:auto}
+.polaroid.big b{display:block;text-align:center;font:900 clamp(18px,3.4vw,32px) Impact,sans-serif;color:#d7263d;padding-top:8px}
+.polaroid.big.fly{animation-duration:6.2s}
+.endpic{width:min(80vw,520px);border:10px solid #fff;border-bottom-width:30px;box-shadow:0 12px 30px #0009;transform:rotate(-2deg)}
