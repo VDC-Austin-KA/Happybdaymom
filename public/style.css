@@ -110,3 +110,17 @@ footer{position:fixed;top:8px;left:12px;z-index:15;font-size:10px;color:#fff8;ma
 .shake{animation:shake .25s}
 @keyframes shake{25%{transform:translate(4px,-3px)}50%{transform:translate(-4px,3px)}75%{transform:translate(3px,2px)}}
 @media (prefers-reduced-motion:reduce){#beams,.cm,#radio,#horns{animation:none!important}}
+
+/* family photos */
+#photos{position:fixed;inset:0;z-index:0;pointer-events:none}
+#photos img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s;mix-blend-mode:luminosity}
+#photos img.on{opacity:.42;animation:kb 9s ease-out forwards}
+.s-chorus #photos img,.s-chorus2 #photos img,.s-final #photos img,.s-outro #photos img{mix-blend-mode:normal}
+.s-chorus #photos img.on,.s-chorus2 #photos img.on,.s-outro #photos img.on{opacity:.5}
+@keyframes kb{from{transform:scale(1.05)}to{transform:scale(1.18) translate(-2%,-1%)}}
+.polaroid{position:fixed;z-index:6;background:#fff;padding:8px 8px 28px;box-shadow:0 10px 30px #000a;pointer-events:none;width:min(30vw,260px)}
+.polaroid img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.polaroid.fly{animation:fly 4.2s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes fly{0%{transform:translateY(60vh) rotate(var(--r)) scale(.3);opacity:0}15%{transform:translateY(0) rotate(var(--r)) scale(1);opacity:1}85%{opacity:1}100%{transform:translateY(-10vh) rotate(calc(var(--r) * -1)) scale(.9);opacity:0}}
+#collage{position:absolute;inset:0;z-index:-1;overflow:hidden;opacity:.35}
+#collage img{position:absolute;width:24vw;max-width:280px;border:6px solid #fff;box-shadow:0 8px 20px #000}

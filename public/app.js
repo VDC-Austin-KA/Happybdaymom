@@ -35,6 +35,11 @@ const SECTIONS = [
     "Happy birthday, Mama…", "Thank you for the music…", "Thank you for the laughter…", "And thank you for the getaway car.", "Mmm… I love you, Mama."] }
 ];
 
+/* Family photos per section (public/photos) */
+const PH = n => `photos/p${String(n).padStart(2, "0")}.jpg`;
+const PHOTOS = { intro: [8, 12], verse1: [2, 1, 11, 3], chorus: [4, 14, 9, 7], verse2: [6, 15, 2], chorus2: [13, 11, 7, 3],
+  bridge: [10, 5], build: [12, 8, 14], final: [9, 13, 4, 6, 7, 2], outro: [15, 5, 12, 8] };
+
 /* ===== Timeline ===== */
 function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 const PENTA = [0, 2, 4, 7, 9];
@@ -237,6 +242,18 @@ function banner(text) { bannerEl.textContent = text; bannerEl.classList.remove("
 function flash(a = .9) { $("flash").animate([{ opacity: a }, { opacity: 0 }], { duration: 400 }); }
 function driveCar() { const c = $("car"); c.classList.remove("go"); void c.offsetWidth; c.classList.add("go"); }
 
+let phFlip = 0;
+function showPhoto(n) {
+  const a = $("ph" + phFlip), b = $("ph" + (phFlip ^ 1));
+  b.onload = () => { b.classList.remove("on"); void b.offsetWidth; b.classList.add("on"); a.classList.remove("on"); };
+  b.src = PH(n); phFlip ^= 1;
+}
+function polaroid(n, side) {
+  const d = document.createElement("div"); d.className = "polaroid fly";
+  d.style.setProperty("--r", (side ? 8 : -8) + "deg"); d.style[side ? "right" : "left"] = "3vw"; d.style.top = "14vh";
+  d.innerHTML = `<img src="${PH(n)}" alt="">`; document.body.appendChild(d); setTimeout(() => d.remove(), 4300);
+}
+
 function setLine(i) {
   const l = lines[i];
   lineEl.className = l && l.shout ? "shoutline" : "";
@@ -254,8 +271,14 @@ function enterSection(i) {
 }
 
 function onLine(l) {
-  const s = sections[l.sec];
+  const s = sections[l.sec], ps = PHOTOS[s.id];
+  if (ps) showPhoto(ps[l.li % ps.length]);
   if (s.id === "bridge") { if (l.li === 0 || l.li === 1) tp(8); if (l.li >= 2) driveCar(); }
+  if (s.id === "verse2" && l.li === 0) polaroid(6, 1); // Rock & Roll Hall of Fame
+  if (s.id === "verse1" && l.li === 4) polaroid(1, 0); // smartest woman I knew
+  if (s.id === "chorus" && l.li === 2) polaroid(13, 1);
+  if (s.id === "build" && l.li === 3) polaroid(12, 0); // the best place to be is together
+  if (s.id === "outro" && l.li === 4) polaroid(8, 1);
   if (s.id === "verse2" && l.li === 1) { pop("AC/DC!"); flash(.7); }
   if (s.id === "verse2" && l.li === 2) pop("🤘METALLICA🤘");
   if (s.id === "verse1" && l.li === 1) pop("94.7!");
@@ -320,8 +343,14 @@ function frame() {
 function finish() {
   playing = false; clearInterval(timer); $("end").classList.add("show");
   const heart = () => { if (playing) return; emoji(pick(["❤️", "💖", "🎂", "🎉", "🎸"]), 2); confetti(4); drawParts(); requestAnimationFrame(heart); };
-  heart();
+  heart(); showPhoto(12);
 }
+
+(function collage() {
+  const c = $("collage"); if (!c) return;
+  for (let i = 1; i <= 15; i++) { const im = new Image(); im.src = PH(i); im.alt = "";
+    im.style.left = ((i * 37) % 90) - 5 + "vw"; im.style.top = ((i * 53) % 85) - 5 + "vh"; im.style.transform = `rotate(${(i % 5 - 2) * 7}deg)`; c.appendChild(im); }
+})();
 
 function go() {
   $("start").style.display = "none"; $("end").classList.remove("show");
