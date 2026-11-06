@@ -1,6 +1,9 @@
 name = "momsbday"
+main = "src/worker.js"
 compatibility_date = "2026-11-01"
 routes = [{ pattern = "momsbday.ackerworks.com", custom_domain = true }]
 
-[assets]
-directory = "./public"
+rules = [
+  { type = "Text", globs = ["**/*.html", "**/*.css", "public/**/*.txt"], fallthrough = true },
+  { type = "Data", globs = ["**/*.jpg", "**/*.png"], fallthrough = true },
+]
