@@ -1,0 +1,5 @@
+name = "momsbday-song"
+main = "worker.js"
+compatibility_date = "2026-11-01"
+workers_dev = false
+rules = [{ type = "Data", globs = ["**/*.m4a"], fallthrough = true }]

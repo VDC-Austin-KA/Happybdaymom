@@ -7,3 +7,7 @@ rules = [
   { type = "Text", globs = ["**/*.html", "**/*.css", "public/**/*.txt"], fallthrough = true },
   { type = "Data", globs = ["**/*.jpg", "**/*.png"], fallthrough = true },
 ]
+
+[[services]]
+binding = "SONG"
+service = "momsbday-song"
