@@ -240,6 +240,17 @@ let curLine = -1, curSec = -1, curWord = -1, lastBeat = -1, playing = false, pau
 function pop(text) { shoutEl.textContent = text; shoutEl.classList.remove("pop"); void shoutEl.offsetWidth; shoutEl.classList.add("pop"); }
 function banner(text) { bannerEl.textContent = text; bannerEl.classList.remove("show"); void bannerEl.offsetWidth; bannerEl.classList.add("show"); }
 function flash(a = .9) { $("flash").animate([{ opacity: a }, { opacity: 0 }], { duration: 400 }); }
+function flyPlane() {
+  const p = $("plane"); p.classList.remove("go"); void p.offsetWidth; p.classList.add("go");
+  pop("✈️ CAPTAIN MAMA! ✈️");
+  if (ctx) { // engine buzz with a fly-by doppler swoop
+    const t = ctx.currentTime, g = gain(master); g.gain.setValueAtTime(.0001, t);
+    g.gain.exponentialRampToValueAtTime(.12, t + 2); g.gain.exponentialRampToValueAtTime(.0001, t + 7);
+    const o = osc("sawtooth", 70, t, t + 7.1, filt("lowpass", 600, 2, g));
+    o.frequency.linearRampToValueAtTime(95, t + 3); o.frequency.linearRampToValueAtTime(60, t + 7);
+    osc("square", 28, t, t + 7.1, gain(o.frequency, 8)); // propeller chop
+  }
+}
 function driveCar() { const c = $("car"); c.classList.remove("go"); void c.offsetWidth; c.classList.add("go"); }
 
 let phFlip = 0;
@@ -274,6 +285,7 @@ function onLine(l) {
   const s = sections[l.sec], ps = PHOTOS[s.id];
   if (ps) showPhoto(ps[l.li % ps.length]);
   if (s.id === "bridge") { if (l.li === 0 || l.li === 1) tp(8); if (l.li >= 2) driveCar(); }
+  if ((s.id === "verse2" && (l.li === 0 || l.li === 6)) || (s.id === "final" && (l.li === 1 || l.li === 6)) || (s.id === "build" && l.li === 1) || (s.id === "intro" && l.li === 2)) flyPlane();
   if (s.id === "verse2" && l.li === 0) polaroid(6, 1); // Rock & Roll Hall of Fame
   if (s.id === "verse1" && l.li === 4) polaroid(1, 0); // smartest woman I knew
   if (s.id === "chorus" && l.li === 2) polaroid(13, 1);

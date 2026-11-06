@@ -124,3 +124,29 @@ footer{position:fixed;top:8px;left:12px;z-index:15;font-size:10px;color:#fff8;ma
 @keyframes fly{0%{transform:translateY(60vh) rotate(var(--r)) scale(.3);opacity:0}15%{transform:translateY(0) rotate(var(--r)) scale(1);opacity:1}85%{opacity:1}100%{transform:translateY(-10vh) rotate(calc(var(--r) * -1)) scale(.9);opacity:0}}
 #collage{position:absolute;inset:0;z-index:-1;overflow:hidden;opacity:.35}
 #collage img{position:absolute;width:24vw;max-width:280px;border:6px solid #fff;box-shadow:0 8px 20px #000}
+
+/* Captain Mama's plane */
+#plane{position:fixed;left:0;top:0;z-index:6;width:min(58vw,480px);opacity:0;pointer-events:none;transform-origin:50% 50%}
+#plane svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 10px 12px #0007)}
+#plane.go{opacity:1;animation:loop 7s linear forwards}
+@keyframes loop{
+ 0%{transform:translate(-50vw,40vh) rotate(4deg)}
+ 25%{transform:translate(18vw,26vh) rotate(-8deg)}
+ 35%{transform:translate(34vw,12vh) rotate(-80deg)}
+ 45%{transform:translate(28vw,-2vh) rotate(-180deg)}
+ 55%{transform:translate(14vw,10vh) rotate(-275deg)}
+ 65%{transform:translate(26vw,26vh) rotate(-360deg)}
+ 80%{transform:translate(62vw,18vh) rotate(-366deg) scale(1.1)}
+ 100%{transform:translate(115vw,6vh) rotate(-372deg)}}
+#plane .prop{animation:prop .06s linear infinite}
+@keyframes prop{50%{transform:scaleY(.2)}}
+#plane .horns{animation:horns .32s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:bottom}
+@keyframes horns{to{transform:rotate(-25deg) translateY(-4px)}}
+#plane .hairflap{animation:flap .15s infinite alternate}
+@keyframes flap{to{transform:translate(-4px,2px) rotate(-6deg)}}
+.pl-banner{position:absolute;right:92%;top:38%;white-space:nowrap;background:#fff;color:#d7263d;font:900 clamp(12px,2vw,20px) Impact,sans-serif;padding:4px 14px;border:3px solid #d7263d;clip-path:polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%);animation:wave .4s ease-in-out infinite alternate}
+@keyframes wave{to{transform:skewY(3deg) translateY(3px)}}
+.notes{position:absolute;left:40%;top:-10%}
+.notes i{position:absolute;font:normal 28px serif;color:#ffe14d;text-shadow:2px 2px 0 #000;animation:note 1.2s linear infinite}
+.notes i:nth-child(2){animation-delay:-.3s;left:20px}.notes i:nth-child(3){animation-delay:-.6s;left:-20px}.notes i:nth-child(4){animation-delay:-.9s;left:10px}
+@keyframes note{0%{transform:translate(0,0);opacity:0}20%{opacity:1}100%{transform:translate(-60px,-70px) rotate(-30deg);opacity:0}}
